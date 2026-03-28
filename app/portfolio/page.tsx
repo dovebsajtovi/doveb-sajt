@@ -23,8 +23,7 @@ export default function PortfolioPage() {
         <div className="container-site">
           <SectionHeader
             eyebrow="Portfolio"
-            title="Radovi koji izgledaju premium — i rade brzo"
-            description="Dva projekta za početak. Svaki link se otvara u novom tabu."
+            title="Neki od naših radova zadovoljnih klijenata"
           >
             <div className="flex flex-col gap-3 sm:flex-row">
               <Link className="btn btn-primary focus-ring" href="/zakazivanje">
@@ -52,4 +51,3 @@ export default function PortfolioPage() {
     </main>
   );
 }
-

@@ -63,10 +63,10 @@ export default function ZakazivanjePage() {
               </div>
               <ul className="mt-3 space-y-2 text-sm text-white/70 leading-7">
                 {[
+                  "Da li imate cenovnik / galeriju  (pri dogovoru ide slanje istih)",
                   "Čime se bavite i šta želite da istaknete",
                   "Primeri sajtova koji vam se sviđaju (ako imate)",
-                  "Broj stranica i da li imate cenovnik / galeriju",
-                  "Rok i prioritet (brzina vs. detalji)",
+                  "Rok izrade (ako imate predviđen rok)",
                 ].map((t) => (
                   <li key={t} className="flex gap-3">
                     <span className="mt-[10px] h-1.5 w-1.5 shrink-0 rounded-full bg-white/35" />

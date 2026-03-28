@@ -37,14 +37,22 @@ export function BookingForm() {
     | { kind: "error"; message: string }
   >({ kind: "idle" });
 
-  const update = (key: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
-    setForm((s) => ({ ...s, [key]: e.target.value }));
+  const update =
+    (key: keyof FormState) =>
+    (
+      e: React.ChangeEvent<
+        HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+      >,
+    ) =>
+      setForm((s) => ({ ...s, [key]: e.target.value }));
 
   const validateClient = () => {
     if (form.fullName.trim().length < 3) return "Unesite ime i prezime.";
     if (form.phone.trim().length < 6) return "Unesite kontakt telefon.";
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) return "Unesite ispravan email.";
-    if (form.message.trim().length < 10) return "Poruka treba da ima bar 10 karaktera.";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim()))
+      return "Unesite ispravan email.";
+    if (form.message.trim().length < 10)
+      return "Poruka treba da ima bar 10 karaktera.";
     return null;
   };
 
@@ -68,7 +76,8 @@ export function BookingForm() {
       if (!res.ok || !data.ok) {
         setStatus({
           kind: "error",
-          message: data.error ?? "Nismo uspeli da pošaljemo poruku. Pokušajte ponovo.",
+          message:
+            data.error ?? "Nismo uspeli da pošaljemo poruku. Pokušajte ponovo.",
         });
         return;
       }
@@ -139,14 +148,22 @@ export function BookingForm() {
             value={form.package}
             onChange={update("package")}
           >
-            {(["Standard", "Pro", "Premium", "Gold"] as PackageOption[]).map((p) => (
-              <option key={p} value={p} className="bg-[#0b1220] text-white">
-                {p}
-              </option>
-            ))}
+            {(["Standard", "Pro", "Premium", "Gold"] as PackageOption[]).map(
+              (p) => (
+                <option key={p} value={p} className="bg-[#0b1220] text-white">
+                  {p}
+                </option>
+              ),
+            )}
           </select>
           <span className="pointer-events-none absolute inset-y-0 right-4 inline-flex items-center text-white/70">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden>
+            <svg
+              viewBox="0 0 24 24"
+              width="18"
+              height="18"
+              fill="none"
+              aria-hidden
+            >
               <path
                 d="M6 9.5 12 15l6-5.5"
                 stroke="currentColor"
@@ -181,7 +198,9 @@ export function BookingForm() {
 
       {status.kind === "success" ? (
         <div className="card p-4 border border-emerald-400/25 bg-emerald-400/5">
-          <div className="text-sm font-semibold text-emerald-200">Uspešno poslato</div>
+          <div className="text-sm font-semibold text-emerald-200">
+            Uspešno poslato
+          </div>
           <div className="mt-1 text-sm text-emerald-100/80 leading-7">
             {status.message}
           </div>
@@ -190,16 +209,20 @@ export function BookingForm() {
 
       {status.kind === "error" ? (
         <div className="card p-4 border border-rose-400/25 bg-rose-400/5">
-          <div className="text-sm font-semibold text-rose-200">Nešto nije u redu</div>
-          <div className="mt-1 text-sm text-rose-100/80 leading-7">{status.message}</div>
+          <div className="text-sm font-semibold text-rose-200">
+            Nešto nije u redu
+          </div>
+          <div className="mt-1 text-sm text-rose-100/80 leading-7">
+            {status.message}
+          </div>
         </div>
       ) : null}
 
       <p className="text-xs text-white/50 leading-6">
-        Klikom na “Pošalji” šaljete podatke na naš mejl u JSON formatu. Ne delimo vaše
+        Klikom na “Pošalji” šaljete podatke na naš mejl. Po dobijanju poruke,
+        javljamo se vam uskoro sa predlogom sledećih koraka. Ne delimo vaše
         podatke sa trećim licima.
       </p>
     </form>
   );
 }
-

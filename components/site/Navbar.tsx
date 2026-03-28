@@ -5,7 +5,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import * as React from "react";
 import { BRANDING, NAV, SITE } from "@/lib/site";
-import { IconInstagram, IconPhone, IconPhoneLucide } from "@/components/icons";
+import { IconInstagram, IconPhoneLucide } from "@/components/icons";
 
 function cx(...classes: Array<string | false | undefined | null>) {
   return classes.filter(Boolean).join(" ");
@@ -97,35 +97,44 @@ export function Navbar() {
               </Link>
             </div>
 
-            {/* Mobile: hamburger */}
-            <button
-              type="button"
-              className="md:hidden focus-ring ml-auto inline-flex items-center justify-center rounded-full bg-white/6 hover:bg-white/10 transition h-11 w-11"
-              aria-label={open ? "Zatvori meni" : "Otvori meni"}
-              aria-expanded={open}
-              onClick={() => setOpen((v) => !v)}
-            >
-              <span className="relative block h-4 w-5">
-                <span
-                  className={cx(
-                    "absolute left-0 top-0 h-[2px] w-5 rounded-full bg-white/90 transition-transform duration-200",
-                    open && "translate-y-[7px] rotate-45"
-                  )}
-                />
-                <span
-                  className={cx(
-                    "absolute left-0 top-[7px] h-[2px] w-5 rounded-full bg-white/70 transition-opacity duration-200",
-                    open && "opacity-0"
-                  )}
-                />
-                <span
-                  className={cx(
-                    "absolute left-0 top-[14px] h-[2px] w-5 rounded-full bg-white/90 transition-transform duration-200",
-                    open && "-translate-y-[7px] -rotate-45"
-                  )}
-                />
-              </span>
-            </button>
+            {/* Mobile: phone + hamburger */}
+            <div className="ml-auto flex items-center gap-2 md:hidden">
+              <a
+                className="focus-ring group inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/5 hover:bg-white/8 transition"
+                href={`tel:${SITE.phone.value}`}
+                aria-label="Pozovi"
+              >
+                <IconPhoneLucide className="text-white/70 group-hover:text-white transition-colors" />
+              </a>
+              <button
+                type="button"
+                className="focus-ring inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/6 hover:bg-white/10 transition"
+                aria-label={open ? "Zatvori meni" : "Otvori meni"}
+                aria-expanded={open}
+                onClick={() => setOpen((v) => !v)}
+              >
+                <span className="relative block h-4 w-5">
+                  <span
+                    className={cx(
+                      "absolute left-0 top-0 h-[2px] w-5 rounded-full bg-white/90 transition-transform duration-200",
+                      open && "translate-y-[7px] rotate-45"
+                    )}
+                  />
+                  <span
+                    className={cx(
+                      "absolute left-0 top-[7px] h-[2px] w-5 rounded-full bg-white/70 transition-opacity duration-200",
+                      open && "opacity-0"
+                    )}
+                  />
+                  <span
+                    className={cx(
+                      "absolute left-0 top-[14px] h-[2px] w-5 rounded-full bg-white/90 transition-transform duration-200",
+                      open && "-translate-y-[7px] -rotate-45"
+                    )}
+                  />
+                </span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -177,10 +186,10 @@ export function Navbar() {
               <span className="text-sm font-semibold text-white/85">Instagram</span>
             </a>
             <a
-              className="focus-ring inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-white/6 hover:bg-white/10 transition h-11"
+              className="focus-ring group inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-white/6 hover:bg-white/10 transition h-11"
               href={`tel:${SITE.phone.value}`}
             >
-              <IconPhone className="text-white/85" />
+              <IconPhoneLucide className="text-white/70 group-hover:text-white transition-colors" />
               <span className="text-sm font-semibold text-white/85">Pozovi</span>
             </a>
           </div>
